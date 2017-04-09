@@ -50,11 +50,11 @@
 				light.position.set( 1, 1, 1 ).normalize();
 				scene.add( light );
 				var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-				for ( var i = 0; i < 1500; i ++ ) {
+				for ( var i = 0; i < 15; i ++ ) {
 					var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-					object.position.x = Math.random() * 800 - 400;
-					object.position.y = Math.random() * 800 - 400;
-					object.position.z = Math.random() * 800 - 400;
+					object.position.x = Math.random() * 30;
+					object.position.y = Math.random() * 200;
+					object.position.z = Math.random() * 30;
 					scene.add( object );
 				}
 				raycaster = new THREE.Raycaster();
@@ -70,7 +70,7 @@
 		
 				window.addEventListener( 'resize', onWindowResize, false );
 				var effectController  = {
-					focalLength: 15,
+					focalLength: 100,
 					// jsDepthCalculation: true,
 					// shaderFocus: false,
 					//
@@ -147,6 +147,7 @@
 						INTERSECTED = intersects[ 0 ].object;
 						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
 						INTERSECTED.material.emissive.setHex( 0xff0000 );
+						scene.remove(INTERSECTED)
 					}
 				} else {
 					if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
